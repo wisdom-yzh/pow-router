@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pow-router spa framework demo</title>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script src="../dist/main.js"></script>
+    <script>
+      pow.config({
+        routerBaseUrl: '/demo',
+        resourceBaseUrl: './components',
+        routers: {
+          '/': 'Hello',
+          '/:id': 'Number'
+        }
+      }).start();
+    </script>
+  </body>
+</html>

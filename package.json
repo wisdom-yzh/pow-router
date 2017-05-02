@@ -1,0 +1,20 @@
+{
+  "name": "pow-router",
+  "version": "1.0.0",
+  "description": "a simple mini spa router module",
+  "main": "src/index.js",
+  "scripts": {
+    "build:dev": "./node_modules/.bin/webpack-dev-server --open",
+    "build:prod": "./node_modules/.bin/webpack -p"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "art-template": "^4.7.0",
+    "path-to-regexp": "^1.7.0"
+  }
+}

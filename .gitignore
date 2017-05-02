@@ -1,0 +1,4 @@
+.tern-project
+tags
+node_modules
+*.swp
