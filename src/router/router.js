@@ -82,6 +82,13 @@ Router.prototype.back = function() {
 }
 
 /**
+ * start the first redirect
+ */
+Router.prototype.start = function() {
+  return this.onChange();
+}
+
+/**
  * redirect to path
  * @virtual
  * @param {String} path
@@ -90,16 +97,10 @@ Router.prototype.back = function() {
  */
 Router.prototype.redirect = function(path, qs, needHistory) {}
 
-Router.prototype.start = function() {
-  return this.onChange();
-}
-
 /**
  * get current url location
  * @virtual
  */
-Router.prototype.getLocation = function() {
-
-}
+Router.prototype.getLocation = function() {}
 
 module.exports = Router;

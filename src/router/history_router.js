@@ -20,6 +20,7 @@ HistoryRouter.prototype.getLocation = function() {
 }
 
 HistoryRouter.prototype.redirect = function(path, qs, needHistory) {
+  path = this.routerBaseUrl + path;
   if (qs) {
     path = path + '?';
     for (var key in qs) {
