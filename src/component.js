@@ -2,13 +2,14 @@ var artTemplate = require('art-template/lib/template-web');
 var utils = require('./utils');
 
 function Component(config) {
+  this.props = config.props || {};
   this.state = config.state || {};
   this.rootScope = config.rootScope || document;
   this.onCreate();
 }
 
 Component.prototype.render = function() {
-  var html = this.template(this.state);
+  var html = this.template(utils.assign(this.props, this.state));
   this.rootScope.innerHTML = html;
   this.onStart(this.rootScope);
 }

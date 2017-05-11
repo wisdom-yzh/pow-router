@@ -2,6 +2,7 @@ pow.Component('Hello', {
 
   template: '\
     <h1>{{data}}</h1>\
+    <a id="next">goto page number</a>\
   ',
 
   onCreate: function() {
@@ -10,7 +11,11 @@ pow.Component('Hello', {
     };
 
     var self = this;
-    this.event = function() {
+    this.event = function(e) {
+      if (e.target.getAttribute('id') == 'next') {
+        pow.router.redirect('/1/0');
+        return;
+      }
       self.setState({
         data: 'lucky dog~'
       });

@@ -13,20 +13,19 @@ utils.inherit(Router, HistoryRouter);
 HistoryRouter.prototype.getLocation = function() {
   var baseUrl = this.routerBaseUrl;
   var path = window.location.pathname;
-  if (window.location.pathname.indexOf(baseUrl) !== 0) {
+  if (path.indexOf(baseUrl) !== 0) {
     return false;
   }
-  return window.location.pathname.substr(baseUrl.length);
+  return path.substr(baseUrl.length);
 }
 
-HistoryRouter.prototype.redirect = function(path, qs, needHistory) {
+/**
+ * @override Router::redirect
+ */
+HistoryRouter.prototype.redirect = function(path, qs, needHistory = true) {
   path = this.routerBaseUrl + path;
   if (qs) {
-    path = path + '?';
-    for (var key in qs) {
-      path = path + key + '=' + qs[key] + '&';
-    }
-    path = path.substr(0, path.length - 1);
+    path = path + utils.encodeQueryString(qs);
   }
   if (needHistory) {
     window.history.pushState({}, '', path);

@@ -76,9 +76,14 @@ Pow.prototype.start = function() {
       throw new Error('url not found!');
       return;
     }
+    if (pow.current && pow.current.remove) pow.current.remove();
     pow.resource.get(matched.component, function(component) {
       pow.current = new component({
-        state: matched.params || {},
+        state: {},
+        props: utils.assign(
+          matched.params, 
+          utils.decodeQueryString(window.location.search)
+        ),
         rootScope: pow.rootScope
       });
       pow.current.render();

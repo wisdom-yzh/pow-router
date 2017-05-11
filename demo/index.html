@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>pow-router spa framework demo</title>
+    <title>pow-router</title>
   </head>
   <body>
-    <div id="main"></div>
-    <script src="../dist/main.js"></script>
-    <script>
-      pow.config({
-        routerBaseUrl: '/demo',
-        resourceBaseUrl: './components',
-        routers: {
-          '/': 'Hello',
-          '/:id': 'Number'
-        }
-      }).start();
-    </script>
+    <ul>
+      <li><a href="/history">simple history router</a></li>
+      <li><a href="/hash">simple hash router</a></li>
+      <li><a href="/require">load by require js</a></li>
+      <li><a href="/jquery">use jquery to develop</a></li>
+      <li><a href="/redux">use redux to develop</a></li>
+    </ul>
   </body>
 </html>

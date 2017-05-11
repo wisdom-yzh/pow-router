@@ -4,7 +4,7 @@
   "description": "a simple mini spa router module",
   "main": "src/index.js",
   "scripts": {
-    "build:dev": "./node_modules/.bin/webpack-dev-server --open",
+    "start": "./node_modules/.bin/webpack-dev-server --open",
     "build:prod": "./node_modules/.bin/webpack -p"
   },
   "author": "",
