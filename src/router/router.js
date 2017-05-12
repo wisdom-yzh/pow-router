@@ -13,7 +13,7 @@ function Router(routerBaseUrl, routers) {
   }
   this.routerBaseUrl = routerBaseUrl;
   this.routers = {}; 
-  if (routers && typeof routers == 'object') {
+  if (routers && typeof routers === 'object') {
     for (var key in routers) {
       this.register(key, routers[key]);
     }
@@ -52,7 +52,7 @@ Router.prototype.match = function() {
     }
   }
   return false;
-}
+};
 
 /**
  * get router table
@@ -60,7 +60,7 @@ Router.prototype.match = function() {
  */
 Router.prototype.getRouters = function() {
   return this.routers;
-}
+};
 
 /**
  * register router
@@ -72,21 +72,21 @@ Router.prototype.register = function(path, component) {
     throw new Error('the path ' + path + ' has already registered');
   }
   this.routers[path] = component;
-}
+};
 
 /**
  * history go back
  */
 Router.prototype.back = function() {
   history.go(-1);
-}
+};
 
 /**
  * start the first redirect
  */
 Router.prototype.start = function() {
   return this.onChange();
-}
+};
 
 /**
  * redirect to path
@@ -95,12 +95,12 @@ Router.prototype.start = function() {
  * @param {Object} qs quertstring object
  * @param {Boolean} needHistory add history or not
  */
-Router.prototype.redirect = function(path, qs, needHistory) {}
+Router.prototype.redirect = function(path, qs, needHistory) {};
 
 /**
  * get current url location
  * @virtual
  */
-Router.prototype.getLocation = function() {}
+Router.prototype.getLocation = function() {};
 
 module.exports = Router;

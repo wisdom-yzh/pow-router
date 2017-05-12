@@ -17,23 +17,24 @@ HistoryRouter.prototype.getLocation = function() {
     return false;
   }
   return path.substr(baseUrl.length);
-}
+};
 
 /**
  * @override Router::redirect
  */
-HistoryRouter.prototype.redirect = function(path, qs, needHistory = true) {
+HistoryRouter.prototype.redirect = function(path, qs, needHistory) {
   path = this.routerBaseUrl + path;
   if (qs) {
     path = path + utils.encodeQueryString(qs);
   }
-  if (needHistory) {
+
+  if (needHistory === undefined || needHistory) {
     window.history.pushState({}, '', path);
   } else {
     window.history.replaceState({}, '', path);
   }
   this.onChange();
-}
+};
 
 HistoryRouter.prototype.start = function() {
   var self = this;
@@ -41,7 +42,7 @@ HistoryRouter.prototype.start = function() {
     self.onChange(event);
   }
   Router.prototype.start.call(this);
-}
+};
 
 
 

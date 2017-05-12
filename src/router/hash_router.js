@@ -17,12 +17,12 @@ HashRouter.prototype.getLocation = function() {
     return false;
   }
   return path.substr(baseUrl.length);
-}
+};
 
 /**
  * @override Router::redirect
  */
-HashRouter.prototype.redirect = function(path, qs, needHistory = true) {
+HashRouter.prototype.redirect = function(path, qs, needHistory) {
   path = this.routerBaseUrl + path;
   if (qs) {
     path = path + '?';
@@ -31,23 +31,23 @@ HashRouter.prototype.redirect = function(path, qs, needHistory = true) {
     }
     path = path.substr(0, path.length - 1);
   }
-  if (needHistory) {
-    location.hash = path;
+  if (needHistory === undefined || needHistory) {
+    window.location.hash = path;
   } else {
-    var finalPath = location.pathname + location.search + 
-      '#' + path;
-    location.replace(finalPath);
+    var finalPath = window.location.pathname +
+                    window.location.search + '#' + path;
+    window.location.replace(finalPath);
   }
   // automatic trigger onHashChange...
-}
+};
 
 HashRouter.prototype.start = function() {
   var self = this;
-  window.onhashchange = function(event) {
+  window.onhashchange = function() {
     self.onChange();
-  }
+  };
   Router.prototype.start.call(this);
-}
+};
 
 
 

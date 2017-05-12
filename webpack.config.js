@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const node_dir = path.join(__dirname, './node_modules/');
 
 module.exports = {
   entry: './src/index.js',

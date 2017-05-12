@@ -79,6 +79,6 @@ module.exports = {
   inherit: inherit,
   getDefaultRouterType: getDefaultRouterType,
   assign: assign,
-  encodeQueryString,
-  decodeQueryString
+  encodeQueryString: encodeQueryString,
+  decodeQueryString: decodeQueryString
 }

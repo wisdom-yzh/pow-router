@@ -17,7 +17,8 @@ Resource.prototype.get = function(name, next) {
     return next(this.resource[name]);
   }
   var scriptElement = document.createElement('script');
-  scriptElement.setAttribute('src', this.baseUrl + '/' + name.toLowerCase() + '.js');
+  scriptElement.setAttribute('src',
+      this.baseUrl + '/' + name.toLowerCase() + '.js');
   document.body.append(scriptElement);
 
   var self = this;
@@ -27,7 +28,7 @@ Resource.prototype.get = function(name, next) {
     }
     next(self.resource[name]);
   }
-}
+};
 
 /**
  * set a Component
@@ -35,6 +36,6 @@ Resource.prototype.get = function(name, next) {
 Resource.prototype.set = function(name, newClass) {
   this.resource[name] = newClass;
   return true;
-}
+};
 
 module.exports = Resource;
