@@ -93,6 +93,8 @@ Pow.prototype.start = function() {
     });
   };
   this.router.start();
+  this.redirect = this.router.redirect;
+  this.back = this.router.back;
 };
 
 module.exports = Pow;
