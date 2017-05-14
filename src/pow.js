@@ -77,10 +77,15 @@ Pow.prototype.start = function() {
   this.router.onChange = function(event) {
     var matched = this.match();
     if (!matched) {
-      throw new Error('url not found!');
+      console.error('url not found!');
+      return false;
     }
     if (pow.current && pow.current.remove) pow.current.remove();
     pow.resource.get(matched.component, function(Component) {
+      if (!Component) {
+        console.error('component not define!');
+        return false;
+      }
       pow.current = new Component({
         state: {},
         props: utils.assign(
@@ -93,8 +98,6 @@ Pow.prototype.start = function() {
     });
   };
   this.router.start();
-  this.redirect = this.router.redirect;
-  this.back = this.router.back;
 };
 
 module.exports = Pow;

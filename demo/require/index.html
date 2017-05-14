@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>requirejs demo</title>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script src="//cdn.bootcss.com/require.js/2.3.3/require.min.js"></script>
+    <script>
+      require.config({
+        paths: {
+          app: './app',
+          pow: '../../dist/main'
+        }
+      });
+      require(['pow', 'App'], function(pow) {
+        pow.config({
+          routerBaseUrl: '/require',
+          routers: {
+            '/': 'App'
+          }
+        }).start();
+      });
+    </script>
+  </body>
+</html>

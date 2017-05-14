@@ -16,8 +16,10 @@ Component.prototype.render = function() {
 
 Component.prototype.setState = function(state) {
   this.onStop(this.rootScope);
-  this.state = state;
-  this.render();
+  this.state = utils.assign(this.state, state);
+  setTimeout(function() {
+    this.render();
+  }.bind(this), 0);
 };
 
 Component.prototype.remove = function() {

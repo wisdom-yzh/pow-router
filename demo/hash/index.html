@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>history router demo</title>
+    <title>hash router demo</title>
   </head>
   <body>
     <div id="main"></div>
     <script src="../../dist/main.js"></script>
     <script>
       pow.config({
-        routerBaseUrl: '/history',
-        resourceBaseUrl: '/history/components',
+        routerBaseUrl: '/',
+        resourceBaseUrl: '/hash/components',
         routers: {
           '/': 'Hello',
-          '/:history/:count': 'Number'
-        }
+          '/world': 'World',
+          '/lucky': 'Lucky',
+          '/dog': 'Dog'
+        },
+        routeType: 'hash'
       }).start();
     </script>
   </body>

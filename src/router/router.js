@@ -26,7 +26,7 @@ function Router(routerBaseUrl, routers) {
  */
 Router.prototype.match = function() {
   var location = this.getLocation();
-  if (!location) {
+  if (false === location) {
     return false;
   }
   // match paths
@@ -85,7 +85,9 @@ Router.prototype.back = function() {
  * start the first redirect
  */
 Router.prototype.start = function() {
-  return this.onChange();
+  setTimeout(function() {
+    this.onChange();
+  }.bind(this), 0);
 };
 
 /**

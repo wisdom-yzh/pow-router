@@ -1,8 +1,8 @@
 var utils = require('../utils');
 var Router = require('./router');
 
-function HashRouter(routers) {
-  Router.call(this, routers);
+function HashRouter(routerBaseUrl, routers) {
+  Router.call(this, routerBaseUrl, routers);
 }
 
 utils.inherit(Router, HashRouter);
@@ -13,10 +13,15 @@ utils.inherit(Router, HashRouter);
 HashRouter.prototype.getLocation = function() {
   var baseUrl = this.routerBaseUrl;
   var path = window.location.hash;
-  if (path.indexOf(baseUrl) !== 0) {
+  if (path === '') {
+    window.location.replace('#/');
+  }
+  path = path.substr(1);
+  var baseUrlIndex = path.indexOf(baseUrl);
+  if (baseUrlIndex !== 0 && baseUrlIndex !== 1) {
     return false;
   }
-  return path.substr(baseUrl.length);
+  return path.substr(baseUrlIndex + baseUrl.length);
 };
 
 /**
@@ -48,8 +53,5 @@ HashRouter.prototype.start = function() {
   };
   Router.prototype.start.call(this);
 };
-
-
-
 
 module.exports = HashRouter;

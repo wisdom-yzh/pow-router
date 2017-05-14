@@ -24,9 +24,9 @@ Resource.prototype.get = function(name, next) {
   var self = this;
   scriptElement.onload = function() {
     if (!self.resource[name]) {
-      next(false);
+      return next(false);
     }
-    next(self.resource[name]);
+    return next(self.resource[name]);
   }
 };
 
