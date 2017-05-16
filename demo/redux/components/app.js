@@ -2,16 +2,18 @@ pow.Component('App', {
 
   template: '\
     <article class="todo-list">\
-      {{if todo && todo.length}}\
+      {{if !empty && todo && todo.length}}\
         {{each todo as row}}\
           {{if row.status != 2}}\
           <section class="todo-item" data-id="{{row.id}}">\
             <p class="todo-title">{{row.title}}</p>\
             <p class="todo-content">{{row.content}}</p>\
-            <div class="todo-footer">\
+            <footer class="todo-footer">\
               <div class="todo-status todo-status-{{row.status}}"></div>\
               <div class="todo-time">update time: {{row.timestamp}}</div>\
-            </div>\
+              <button class="todo-edit">Edit</button>\
+              <button class="todo-delete">Delete</button>\
+            </footer>\
           </section>\
           {{/if}}\
         {{/each}}\
@@ -19,10 +21,18 @@ pow.Component('App', {
       Your TodoList is Empty~\
       {{/if}}\
     </article>\
+    <button class="todo-add">add a new item</button>\
   ',
+  
+  onRender: function (data, next) {
+    var empty = data.todo.filter(function (item) {
+      return item.status !== 2;
+    }).length === 0;
+    next(pow.utils.assign({ empty: empty }, data));
+  },
 
   onCreate: function() {
-    // add first todo
+    // add first task
     if (!store.getState().length) {
       store.dispatch(Action.addTodo(
         'This is a simple todo webapp',

@@ -1,12 +1,12 @@
 pow.Component('Number', {
   
   template: '\
-    <div>history: {{history}}</div>\
+    <div>history: {{history_count}}</div>\
     <div>count: {{count}}</div>\
-    <div id="total">add history and count</div>\
-    <div id="count">only add count</div>\
-    <div id="history">only add history</div>\
-    <div id="back">back</div>\
+    <button id="total">add history and count</button>\
+    <button id="count">only add count</button>\
+    <button id="history">only add history</button>\
+    <button id="back">back</button>\
   ',
 
   onCreate: function() {
@@ -15,20 +15,20 @@ pow.Component('Number', {
       return function() {
         pow.router.redirect('/' + history + '/' + count, {}, needHistory);
       }
-    }
+    };
 
-    var history = parseInt(this.props.history) || 1;
+    var history = parseInt(this.props.history_count) || 1;
     var count = parseInt(this.props.count) || 0;
     var eventHandler = {
       total: redirect(history+1, count+1, true),
       count: redirect(history, count+1, false),
       history: redirect(history+1, count, true),
-      back: function() { pow.router.back() }
+      back: function() { pow.router.back(); }
     };
     this.event = function(e) {
       var id = e.target.getAttribute('id');
       eventHandler[id]();
-    }
+    };
   },
 
   onStart: function(rootScope) {

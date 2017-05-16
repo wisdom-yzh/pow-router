@@ -1,5 +1,3 @@
-var Component = require('./component');
-
 /**
  * Class Resource
  * a Component manager

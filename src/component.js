@@ -8,11 +8,12 @@ function Component(config) {
 }
 
 Component.prototype.render = function() {
-  var html = this.template && this.template(
-    utils.assign(this.props, this.state)
-  );
-  this.rootScope.innerHTML = html || 'template is empty';
-  this.onStart(this.rootScope);
+  var data = utils.assign(this.props, this.state);
+  this.onRender(data, function (data) {
+    var html = this.template && this.template(data);
+    this.rootScope.innerHTML = html || 'template is empty';
+    this.onStart(this.rootScope);
+  }.bind(this));
 };
 
 Component.prototype.setState = function(state) {
@@ -32,6 +33,7 @@ Component.prototype.onCreate = function() {};
 Component.prototype.onStart = function() {};
 Component.prototype.onStop = function() {};
 Component.prototype.onDestroy = function() {};
+Component.prototype.onRender = function (data, next) { next(data); };
 Component.prototype.template = '';
 
 function create(obj) {
@@ -39,11 +41,11 @@ function create(obj) {
     Component.call(this, obj);
   };
   utils.inherit(Component, F);
-  if (obj.template) F.prototype.template = artTemplate.compile(obj.template);
-  if (obj.onStart) F.prototype.onStart = obj.onStart;
-  if (obj.onStop) F.prototype.onStop = obj.onStop;
-  if (obj.onCreate) F.prototype.onCreate = obj.onCreate;
-  if (obj.onDestroy) F.prototype.onDestroy = obj.onDestroy;
+  var funcs = ['onStart', 'onStop', 'onCreate', 'onDestroy', 'onRender'];
+  for (var i = 0; i < funcs.length; i++) {
+    obj[funcs[i]] && (F.prototype[funcs[i]] = obj[funcs[i]]);
+  }
+  obj.template && (F.prototype.template = artTemplate.compile(obj.template));
   return F;
 }
 

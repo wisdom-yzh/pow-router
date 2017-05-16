@@ -41,7 +41,8 @@
     TYPES: TYPES,
     addTodo: addTodo,
     triggerTodo: triggerTodo,
-    removeTodo: removeTodo
+    removeTodo: removeTodo,
+    editTodo: editTodo
   };
 
 })(window);

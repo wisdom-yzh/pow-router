@@ -62,7 +62,7 @@ function encodeQueryString(qs) {
  * @return {Object} qs object
  */
 function decodeQueryString(querystring) {
-  if (querystring[0] == '?') querystring = querystring.substr(1);
+  if (querystring[0] === '?') querystring = querystring.substr(1);
   var qs = {}, arr = querystring.split('&');
   for (var i = 0; i < arr.length; i++) {
     var objArr = arr[i].split('=');
