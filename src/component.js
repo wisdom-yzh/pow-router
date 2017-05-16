@@ -5,12 +5,13 @@ function Component(config) {
   this.props = config.props || {};
   this.state = config.state || {};
   this.rootScope = config.rootScope || document;
-  this.onCreate();
 }
 
 Component.prototype.render = function() {
-  var html = this.template(utils.assign(this.props, this.state));
-  this.rootScope.innerHTML = html;
+  var html = this.template && this.template(
+    utils.assign(this.props, this.state)
+  );
+  this.rootScope.innerHTML = html || 'template is empty';
   this.onStart(this.rootScope);
 };
 

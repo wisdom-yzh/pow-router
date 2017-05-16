@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './dist/[name].js',
+    filename: './dist/pow-router.js',
     libraryTarget: 'umd',
     library: 'pow'
   },

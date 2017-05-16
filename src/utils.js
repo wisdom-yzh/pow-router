@@ -33,11 +33,11 @@ function assign(object1, object2) {
     return Object.assign({}, object1, object2);
   }
   var obj = {};
-  for (var key in object2) {
-    obj[key] = object2[key];
-  }
   for (var key in object1) {
     obj[key] = object1[key];
+  }
+  for (var key in object2) {
+    obj[key] = object2[key];
   }
   return obj;
 }

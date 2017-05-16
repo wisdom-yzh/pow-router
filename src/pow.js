@@ -69,6 +69,9 @@ Pow.prototype.Component = function(name, obj) {
   return this.resource.set(name, component.create(obj));
 };
 
+/**
+ * Start!
+ */
 Pow.prototype.start = function() {
   var pow = this;
   if (!this.router || !this.resource) {
@@ -94,6 +97,7 @@ Pow.prototype.start = function() {
         ),
         rootScope: pow.rootScope
       });
+      pow.current.onCreate();
       pow.current.render();
     });
   };
