@@ -47,9 +47,13 @@ import pow from 'pow-router';
 ### Config and start
 
 ```javascript
-// You need to set at least one router before start the frameword
+// You need to set at least one router before start the framework
 pow.config({
-	
+  routerBaseUrl: '',   // router base url
+  resourceBaseUrl: '', // resource base url
+  rootScope: '#main',  // root scope element
+  routers: {},         // router table, supports pattern symbol
+  routeType: 'history' // hash or history, default history if support
 });
 
 // Start it!
@@ -61,9 +65,9 @@ pow.start();
 ```javascript
 // redirect
 pow.router.redirect(
-	'/hello',	// url path 
-	{},			// params in querystring
-	true		// need history or not
+  '/hello', // url path
+  {},       // params in querystring
+  true      // need history or not
 );
 
 // history go back
@@ -71,3 +75,56 @@ pow.router.back();
 ```
 
 ### Component
+
+```javascript
+// definition a component
+pow.Component('ComponentName', {
+
+  // template to render
+  template: '\
+    <div>{{data}}</div>\
+  ',
+
+  // do something common in this function
+  onCreate() {
+
+  }
+
+  // trigger when render, call next to render
+  // data can be adjusted in this method
+  onRender(data, next) {
+    next(data);
+  }
+
+  // when onStart is called, the template has been rendered to browser
+  // bind events and do something in onCreate
+  onStart(rootElement) {
+
+  }
+
+  // release resource and variables in onStop
+  onStop(rootElement) {
+
+  }
+});
+```
+
+### Component Lifecycle
+
+* Lifecycle when router change
+
+> * (previous component) onStop
+
+> * (current  component) onCreate
+
+> * (current component) onRender
+
+> * (current component) onStart
+
+* Lifecycle when use setState
+
+> * onStop
+
+> * onRender
+
+> * onStart
