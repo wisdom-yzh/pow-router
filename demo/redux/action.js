@@ -18,6 +18,7 @@
   function editTodo(id, params) {
     return {
       type: TYPES.EDIT_TODO,
+      id: id,
       title: params.title,
       content: params.content
     }

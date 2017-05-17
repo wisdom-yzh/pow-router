@@ -44,6 +44,4 @@ HistoryRouter.prototype.start = function() {
   Router.prototype.start.call(this);
 };
 
-
-
 module.exports = HistoryRouter;

@@ -52,8 +52,7 @@ function encodeQueryString(qs) {
   for (var key in qs) {
     querystring = querystring + key + '=' + qs[key] + '&';
   }
-  querystring = querystring.substr(0, querystring.length - 1);
-  return querystring;
+  return querystring.substr(0, querystring.length - 1);
 }
 
 /**

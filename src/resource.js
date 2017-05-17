@@ -4,8 +4,16 @@
  */
 function Resource(baseUrl) {
   this.resource = {};
-  this.baseUrl = baseUrl;
+  this.baseUrl = baseUrl || '';
 }
+
+/**
+ * set baseUrl to load resource
+ * @param {String} baseUrl
+ */
+Resource.prototype.setBaseUrl = function (baseUrl) {
+  this.baseUrl = baseUrl;
+};
 
 /**
  * get a Component

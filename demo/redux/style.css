@@ -1,0 +1,92 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+    color: #666666;
+}
+.btn {
+    display: inline-block;
+    min-width: 150px;
+    padding: 5px 15px;
+    height: 35px;
+    text-align: center;
+    background: #ffffff;
+    color: #333333;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.layout {
+    text-align: center;
+    width: 100%;
+}
+.todo-header {
+    padding: 20px 0;
+    font-weight: bold;
+    font-size: 24px;
+    border-bottom: 1px solid #cccccc;
+}
+.todo-list, .todo-editor {
+    display: inline-block;
+    text-align: left;
+    width: 95%;
+}
+.todo-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #cccccc;
+}
+.todo-add {
+    width: 200px;
+    margin-top: 50px;
+    display: inline-block;
+}
+.todo-title {
+    font-size: 21px;
+    padding: 7px 0;
+}
+.todo-time {
+    text-align: right;
+    font-size: 8px;
+    color: #cccccc;
+    margin-bottom: 10px;
+}
+.todo-content {
+    font-size: 16px;
+    padding: 5px 0;
+    color: #aaaaaa;
+    text-align: center;
+}
+.todo-footer {
+    text-align: center;
+}
+.edit-body {
+    margin-top: 10px;
+}
+.edit-title {
+    width: 100%;
+    font-size: 22px;
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+.edit-content {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+}

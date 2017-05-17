@@ -8,10 +8,10 @@ var Resource = require('./resource');
  * @constructor
  */
 function Pow() {
-  this.router = null;    // router controller
-  this.resource = null;  // resource loader
-  this.current = null;   // pointer to current component
-  this.rootScope = null; // pointer to root element
+  this.router = null;              // router controller
+  this.current = null;             // pointer to current component
+  this.rootScope = null;           // pointer to root element
+  this.resource = new Resource();  // resource loader
 }
 
 /**
@@ -44,7 +44,7 @@ Pow.prototype.config = function(config) {
     }
   }
   this.rootScope = document.querySelector(defaultConfig.rootScope) || document;
-  this.resource = new Resource(defaultConfig.resourceBaseUrl);
+  this.resource.setBaseUrl(defaultConfig.resourceBaseUrl);
   if (defaultConfig.routeType === 'history' && window.history) {
     this.router = new router.HistoryRouter(
       defaultConfig.routerBaseUrl,
@@ -77,7 +77,7 @@ Pow.prototype.start = function() {
   if (!this.router || !this.resource) {
     this.config(undefined);
   }
-  this.router.onChange = function(event) {
+  this.router.onChange = function() {
     var matched = this.match();
     if (!matched) {
       console.error('url not found!');

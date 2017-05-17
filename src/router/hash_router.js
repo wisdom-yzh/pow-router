@@ -16,7 +16,7 @@ HashRouter.prototype.getLocation = function() {
   if (path === '') {
     window.location.replace('#/');
   }
-  path = path.substr(1);
+  path = path.substr(1); // remove '#'
   var baseUrlIndex = path.indexOf(baseUrl);
   if (baseUrlIndex !== 0 && baseUrlIndex !== 1) {
     return false;
@@ -30,11 +30,7 @@ HashRouter.prototype.getLocation = function() {
 HashRouter.prototype.redirect = function(path, qs, needHistory) {
   path = this.routerBaseUrl + path;
   if (qs) {
-    path = path + '?';
-    for (var key in qs) {
-      path = path + key + '=' + qs[key] + '&';
-    }
-    path = path.substr(0, path.length - 1);
+    path = path + utils.encodeQueryString(qs);
   }
   if (needHistory === undefined || needHistory) {
     window.location.hash = path;
