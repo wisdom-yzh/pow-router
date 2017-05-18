@@ -8,5 +8,5 @@ router.config({
   }
 }).start();
 
-require('./articles');
-require('./details');
+require('./components/articles');
+require('./components/details');

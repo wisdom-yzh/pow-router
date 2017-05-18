@@ -14,6 +14,8 @@
 
 * compatible with es5 and ie8
 
+##
+
 ## Take a try
 
 ### See some demo:
@@ -81,9 +83,9 @@ pow.router.back();
 pow.Component('ComponentName', {
 
   // template to render
-  template: '\
-    <div>{{data}}</div>\
-  ',
+  template: `
+    <div>{{data}}</div>
+  `,
 
   // do something common in this function
   onCreate() {

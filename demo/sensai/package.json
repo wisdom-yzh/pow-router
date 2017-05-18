@@ -15,5 +15,9 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "isomorphic-fetch": "^2.2.1",
     "webpack": "^2.5.1"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "redux": "^3.6.0"
   }
 }
