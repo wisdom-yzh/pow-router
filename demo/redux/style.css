@@ -67,8 +67,23 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
     color: #aaaaaa;
     text-align: center;
 }
+.todo-status {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.todo-status-0 {
+    background-color: red;
+}
+.todo-status-1 {
+    background-color: green;
+}
 .todo-footer {
     text-align: center;
+    position: relative;
 }
 .edit-body {
     margin-top: 10px;

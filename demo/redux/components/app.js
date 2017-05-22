@@ -10,8 +10,8 @@ pow.Component('App', {
             <p class="todo-title">{{row.title}}</p>\
             <p class="todo-content">{{row.content}}</p>\
             <footer class="todo-footer" data-id="{{row.id}}">\
-              <div class="todo-status todo-status-{{row.status}}"></div>\
               <div class="todo-time">{{row.timestamp}}</div>\
+              <button class="todo-status todo-status-{{row.status}}"></button>\
               <button class="btn todo-edit">Edit</button>\
               <button class="btn todo-delete">Delete</button>\
             </footer>\
@@ -49,20 +49,18 @@ pow.Component('App', {
         pow.router.redirect('/edit');
       } else {
         var todo_id = parseInt(target.parentNode.getAttribute('data-id'));
-        switch (className) {
-          case 'btn todo-edit':
-            pow.router.redirect('/edit', {
-              id: todo_id,
-              title: store.getState()[todo_id].title,
-              content: store.getState()[todo_id].content
-            });
-            break;
-          case 'btn todo-delete':
-            store.dispatch(Action.removeTodo(todo_id));
-            break;
-          case 'btn todo-status':
-            store.dispatch(Action.triggerTodo(todo_id));
-            break;
+        if (className.indexOf('todo-edit') !== -1) {
+          return pow.router.redirect('/edit', {
+            id: todo_id,
+            title: store.getState()[todo_id].title,
+            content: store.getState()[todo_id].content
+          });
+        }
+        if (className.indexOf('todo-delete') !== -1) {
+          return store.dispatch(Action.removeTodo(todo_id));
+        }
+        if (className.indexOf('todo-status') !== -1) {
+          return store.dispatch(Action.triggerTodo(todo_id));
         }
       }
     };
