@@ -27,7 +27,6 @@
    * @return {Array} new state
    */
   function todo(state, action) {
-    console.log(action);
     if (action.type === Action.TYPES.ADD_TODO) {
       return state.concat({
         id: state.length,

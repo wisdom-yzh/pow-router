@@ -4,7 +4,7 @@
 
 > File size is smaller than 33KB, and only 12KB after gzipped
 
-## Feather
+## Feature
 
 * support hash mode and history mode
 
@@ -14,7 +14,6 @@
 
 * compatible with es5 and ie8
 
-##
 
 ## Take a try
 
