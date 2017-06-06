@@ -6,7 +6,8 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './dist/bundle.js',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
   },
   devtool: 'source-map',
   module: {
@@ -48,7 +49,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin({
-      filename: './dist/style.css',
+      filename: 'style.css',
       allChunks: true
     })
   ]

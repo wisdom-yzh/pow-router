@@ -1,0 +1,57 @@
+@mixin ellipsis {
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+@mixin border-bottom {
+  &:after {
+    display: block;
+    content: '';
+    height: .01rem;
+    margin-top: .2rem;
+    background-color: #f2f2f2;
+    transform: scaleY(0.5);
+  }
+}
+
+.container {
+  padding: .05rem .1rem;
+  .article {
+    @include border-bottom;
+    position: relative;
+    padding: .25rem .18rem;
+    font-size: 0;
+  }
+  .left {
+    width: 70%;
+    .abstract, .author {
+      font-size: .12rem;
+      color: #aaaaaa;
+    }
+    .author {
+      @include ellipsis;
+      margin-top: .08rem;
+    }
+  }
+  .right {
+    width: 30%;
+    text-align: center;
+    .head-pic {
+      img {
+        border-radius: 50%;
+        width: 90%;
+      }
+    }
+    .category {
+      @include ellipsis;
+      font-size: .12rem;
+      color: #aaaaaa;
+    }
+  }
+  .border-bottom:after {
+  }
+}

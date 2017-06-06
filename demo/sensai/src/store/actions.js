@@ -15,5 +15,5 @@ export const actionFetchApi = (actionType, params) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: type.ERROR, error })
-    })
+    });
 }

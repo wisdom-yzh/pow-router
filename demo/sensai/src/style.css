@@ -1,0 +1,16 @@
+html {
+  font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+  color: #111111;
+}
+* {
+  box-sizing: border-box;
+}
+ib > div, p, section {
+  display: inline-block;
+  vertical-align: middle;
+}
+article, section, p {
+  margin: 0;
+  padding: 0;
+  font-size: .14rem;
+}
