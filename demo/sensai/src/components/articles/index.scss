@@ -23,16 +23,16 @@
   .article {
     @include border-bottom;
     position: relative;
-    padding: .25rem .18rem;
+    padding: .15rem;
     font-size: 0;
   }
   .left {
     width: 70%;
-    .abstract, .author {
+    .abstract, .category {
       font-size: .12rem;
       color: #aaaaaa;
     }
-    .author {
+    .category {
       @include ellipsis;
       margin-top: .08rem;
     }
@@ -46,12 +46,10 @@
         width: 90%;
       }
     }
-    .category {
+    .author {
       @include ellipsis;
       font-size: .12rem;
       color: #aaaaaa;
     }
-  }
-  .border-bottom:after {
   }
 }

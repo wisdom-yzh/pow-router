@@ -12,7 +12,7 @@ router.config({
 
 // set redux store
 store.subscribe(() => {
-  router.current.setState({ data: store.getState()});
+  router.current.setState({ ...store.getState()});
 });
 window.store = store;
 
