@@ -503,7 +503,7 @@ article, section, p {
   padding: .05rem .1rem; }
   .container .article {
     position: relative;
-    padding: .15rem;
+    padding: 0 .15rem;
     font-size: 0; }
     .container .article:after {
       display: block;
@@ -517,7 +517,8 @@ article, section, p {
     width: 70%; }
     .container .left .abstract, .container .left .category {
       font-size: .12rem;
-      color: #aaaaaa; }
+      color: #aaaaaa;
+      word-break: break-all; }
     .container .left .category {
       word-wrap: break-word;
       word-break: break-all;

@@ -23,7 +23,7 @@
   .article {
     @include border-bottom;
     position: relative;
-    padding: .15rem;
+    padding: 0 .15rem;
     font-size: 0;
   }
   .left {
@@ -31,6 +31,7 @@
     .abstract, .category {
       font-size: .12rem;
       color: #aaaaaa;
+      word-break: break-all;
     }
     .category {
       @include ellipsis;

@@ -37,15 +37,26 @@ Component.prototype.onRender = function (data, next) { next(data); };
 Component.prototype.template = '';
 
 function create(obj) {
-  var F = function(obj) {
-    Component.call(this, obj);
-  };
-  utils.inherit(Component, F);
+  var protoType = {};
   var funcs = ['onStart', 'onStop', 'onCreate', 'onDestroy', 'onRender'];
   for (var i = 0; i < funcs.length; i++) {
-    obj[funcs[i]] && (F.prototype[funcs[i]] = obj[funcs[i]]);
+    obj[funcs[i]] && (protoType[funcs[i]] = obj[funcs[i]]);
+    delete obj[funcs[i]];
   }
-  obj.template && (F.prototype.template = artTemplate.compile(obj.template));
+  if (obj.template) {
+    protoType.template = artTemplate.compile(obj.template);
+    delete obj.template;
+  }
+  var F = function(params) {
+    Component.call(this, params);
+    for (var key in obj) {
+      this[key] = obj[key];
+    }
+  };
+  utils.inherit(Component, F);
+  for (var key in protoType) {
+    F.prototype[key] = protoType[key];
+  }
   return F;
 }
 

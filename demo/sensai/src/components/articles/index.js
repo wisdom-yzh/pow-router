@@ -9,7 +9,7 @@ router.Component('Articles', {
 
   template: `
     <div class="container">
-      {{if !list.data.length && list.is_fetching}}${Loading}{{/if}}
+      {{if list.is_fetching}}${Loading}{{/if}}
       {{if list.data && list.data.length}}
         {{each list.data as article}}
         <article class="article ib">
@@ -44,16 +44,23 @@ router.Component('Articles', {
         offset: 0
       }));
     }
-    // scroll event handler
-    
   },
 
   onStart() {
-  
+    window.addEventListener('scroll', this.__onScroll.bind(this))
   },
 
   onStop() {
+    window.removeEventListener('scroll', this.__onScroll.bind(this))
+  },
 
+  __onScroll() {
+    if (window.innerHeight + document.body.scrollTop >= 0.8 * document.body.scrollHeight &&
+        !this.state.list.is_fetching) {
+      window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_LIST, {
+        offset: this.state.list.data.length / 10
+      }))
+    }
   }
 
 });
