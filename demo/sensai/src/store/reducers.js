@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { REQUEST_TYPE, ACTION_TYPE, requestStatus } from './consts';
+import { API_PREFIX, REQUEST_TYPE, ACTION_TYPE, requestStatus } from './consts';
 
 /**
  * sensai article details
@@ -21,12 +21,20 @@ function detail(store = {
       error: action.error
     };
   } else if (action.type === type.SUCCESS) {
+    // convert all opposite image src
+    const contentElem = document.createElement('div');
+    contentElem.innerHTML = decodeURIComponent(action.data.content);
+    contentElem.querySelectorAll('img').forEach(el => {
+      const imgSrc = el.getAttribute('src');
+      if (imgSrc.indexOf('http') === -1)
+      el.setAttribute('src', API_PREFIX + imgSrc);
+    });
     return {
       ...store,
       is_fetching: false,
       data: {
         ...store.data,
-        [action.params.id]: decodeURIComponent(action.data.content)
+        [action.params.id]: contentElem.innerHTML
       }
     };
   }

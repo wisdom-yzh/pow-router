@@ -6,17 +6,26 @@ import './index.scss'
 
 pow.Component('Details', {
 
-  template: `Details`,
+  template: `{{@content}}`,
+
+  onRender(data, next) {
+    next({
+      is_fetching: data.detail.is_fetching || false,
+      article_id: data.id,
+      content: data.detail.data[data.id]
+    });
+  },
 
   onCreate() {
     const state = window.store.getState();
-    const articleId = this.props.id;
+    const article_id = this.props.id;
     if (!state.detail || !state.detail.data.length ||
-       !state.detail.data[articleId]) {
+       !state.detail.data[article_id]) {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_DETAIL, {
-        id: articleId
+        id: article_id
       }));
     }
+    this.state = { ...this.state, state }
   },
 
   onStart() {

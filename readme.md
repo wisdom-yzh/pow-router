@@ -107,6 +107,13 @@ pow.Component('ComponentName', {
   onStop(rootElement) {
 
   }
+
+  // a hook before render is called
+  // we can handle data in this function so that data template is more simple
+  // default is 'next(data)'
+  onRender(data, next) {
+    next(data);
+  }
 });
 ```
 
