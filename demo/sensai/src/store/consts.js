@@ -1,7 +1,8 @@
 export const API_PREFIX = 'http://sensai.powerpigger.cc'
 
 const apiName = {
-  SENSAI_LIST: '/sensai/site/list'
+  SENSAI_LIST: '/sensai/site/list',
+  SENSAI_DETAIL: '/sensai/site/articlejson'
 };
 
 export const requestStatus = apiName => ({
@@ -17,7 +18,8 @@ export const REQUEST_TYPE = {
 };
 
 export const ACTION_TYPE = {
-  SENSAI_LIST: 'SENSAI_LIST'
+  SENSAI_LIST: 'SENSAI_LIST',
+  SENSAI_DETAIL: 'SENSAI_DETAIL'
 };
 
 export const getApiName = (api, params = {}) => (

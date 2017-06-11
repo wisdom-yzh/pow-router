@@ -33,6 +33,9 @@
       color: #aaaaaa;
       word-break: break-all;
     }
+    .abstract {
+      display: block;
+    }
     .category {
       @include ellipsis;
       margin-top: .08rem;

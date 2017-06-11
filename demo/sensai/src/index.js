@@ -1,8 +1,8 @@
-import router from 'pow-router';
+import pow from 'pow-router';
 import store from './store'
 
 // set router
-router.config({
+pow.config({
   routerBaseUrl: '/sensai',
   routers: {
     '/': 'Articles',
@@ -12,7 +12,7 @@ router.config({
 
 // set redux store
 store.subscribe(() => {
-  router.current.setState({ ...store.getState()});
+  pow.current.setState({ ...store.getState()});
 });
 window.store = store;
 

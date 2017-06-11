@@ -8,6 +8,28 @@ function detail(store = {
   is_fetching: false,
   data: {}
 }, action) {
+  const type = requestStatus(ACTION_TYPE.SENSAI_DETAIL);
+  if (action.type === type.START) {
+    return {
+      ...store,
+      is_fetching: true
+    };
+  } else if (action.type === type.ERROR) {
+    return {
+      ...store,
+      is_fetching: false,
+      error: action.error
+    };
+  } else if (action.type === type.SUCCESS) {
+    return {
+      ...store,
+      is_fetching: false,
+      data: {
+        ...store.data,
+        [action.params.id]: decodeURIComponent(action.data.content)
+      }
+    };
+  }
   return store;
 }
 
@@ -18,7 +40,7 @@ function list(store = {
   is_fetching: false,
   data: []
 }, action) {
-  const type = requestStatus(ACTION_TYPE.SENSAI_LIST)
+  const type = requestStatus(ACTION_TYPE.SENSAI_LIST);
   if (action.type === type.START) {
     return {
       ...store,

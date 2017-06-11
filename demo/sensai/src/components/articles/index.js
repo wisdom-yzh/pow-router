@@ -1,18 +1,20 @@
-import router from 'pow-router';
+import pow from 'pow-router';
 import Loading from '../loading';
 import { actionFetchApi } from '../../store/actions';
 import { API_PREFIX, REQUEST_TYPE, ACTION_TYPE } from '../../store/consts';
 
 import './index.scss';
 
-router.Component('Articles', {
+let scrollY = 0;
+
+pow.Component('Articles', {
 
   template: `
     <div class="container">
-      {{if list.is_fetching}}${Loading}{{/if}}
-      {{if list.data && list.data.length}}
-        {{each list.data as article}}
-        <article class="article ib">
+      {{if is_fetching}}${Loading}{{/if}}
+      {{if list && list.length}}
+        {{each list as article}}
+        <article class="article ib" data-id="{{article.id}}">
           <section class="left">
             <h3 class="title">{{article.title}}</h3>
             <p class="abstract">{{article.abstract}}</p>
@@ -32,8 +34,13 @@ router.Component('Articles', {
 
   onRender(data, next) {
     next({
-      list: data.list
+      is_fetching: data.list.is_fetching || false,
+      list: data.list.data.map(row => ({
+        ...row, 
+        id: row.linkurl.split('/').slice(-1)[0]
+      }))
     });
+    window.scrollTo(0, scrollY);
   },
 
   onCreate() {
@@ -44,22 +51,46 @@ router.Component('Articles', {
         offset: 0
       }));
     }
+    this.state = { ...this.state, ...state };
+    this.__onScroll = this.__onScroll.bind(this);
   },
 
   onStart() {
-    window.addEventListener('scroll', this.__onScroll.bind(this))
+    window.addEventListener('scroll', this.__onScroll);
+    document.querySelector('.container') &&
+    document.querySelector('.container').addEventListener(
+      'click', this.__onClickList, true
+    );
   },
 
   onStop() {
-    window.removeEventListener('scroll', this.__onScroll.bind(this))
+    window.removeEventListener('scroll', this.__onScroll);
+    document.querySelector('.container') && 
+    document.querySelector('.container').removeEventListener(
+      'click', this.__onClickList, true
+    );
   },
 
   __onScroll() {
-    if (window.innerHeight + document.body.scrollTop >= 0.8 * document.body.scrollHeight &&
+    if (window.innerHeight + document.body.scrollTop >= 
+        document.body.scrollHeight - 30 &&
         !this.state.list.is_fetching) {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_LIST, {
         offset: this.state.list.data.length / 10
-      }))
+      }));
+    }
+    scrollY = document.body.scrollTop;
+  },
+
+  __onClickList(e) {
+    let target = e.target;
+    while (true) {
+      let articleId = target.getAttribute('data-id')
+      if (articleId) {
+        pow.router.redirect(`/article/${articleId}`);
+        break;
+      }
+      target = target.parentNode;
     }
   }
 
