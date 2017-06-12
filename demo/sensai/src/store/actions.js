@@ -1,5 +1,6 @@
-import fetch from "isomorphic-fetch"
-import { 
+import 'es6-promise/auto'
+import 'isomorphic-fetch'
+import {
   REQUEST_TYPE, 
   getApiName, 
   requestStatus 
