@@ -4,7 +4,7 @@ var utils = require('./utils');
 function Component(config) {
   this.props = config.props || {};
   this.state = config.state || {};
-  this.rootScope = config.rootScope || document;
+  this.rootScope = config.rootScope || window.document;
 }
 
 Component.prototype.render = function() {

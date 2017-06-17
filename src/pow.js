@@ -80,13 +80,11 @@ Pow.prototype.start = function() {
   this.router.onChange = function() {
     var matched = this.match();
     if (!matched) {
-      console.error('url not found!');
       return false;
     }
     if (pow.current && pow.current.remove) pow.current.remove();
     pow.resource.get(matched.component, function(Component) {
       if (!Component) {
-        console.error('component not define!');
         return false;
       }
       pow.current = new Component({

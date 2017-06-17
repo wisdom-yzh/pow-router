@@ -10,7 +10,7 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, './demo'),
+    contentBase: path.join(module.dirname, './demo'),
     compress: true,
     port: 8080,
     historyApiFallback: true,
@@ -20,4 +20,4 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};

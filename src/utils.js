@@ -36,7 +36,7 @@ function assign(object1, object2) {
   for (var key in object1) {
     obj[key] = object1[key];
   }
-  for (var key in object2) {
+  for (key in object2) {
     obj[key] = object2[key];
   }
   return obj;
@@ -80,4 +80,4 @@ module.exports = {
   assign: assign,
   encodeQueryString: encodeQueryString,
   decodeQueryString: decodeQueryString
-}
+};

@@ -24,7 +24,7 @@ Resource.prototype.get = function(name, next) {
   }
   var scriptElement = document.createElement('script');
   scriptElement.setAttribute('src',
-      this.baseUrl + '/' + name.toLowerCase() + '.js');
+    this.baseUrl + '/' + name.toLowerCase() + '.js');
   document.body.append(scriptElement);
 
   var self = this;
@@ -33,7 +33,7 @@ Resource.prototype.get = function(name, next) {
       return next(false);
     }
     return next(self.resource[name]);
-  }
+  };
 };
 
 /**
