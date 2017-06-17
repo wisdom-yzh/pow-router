@@ -5,7 +5,7 @@ html {
 * {
   box-sizing: border-box;
 }
-ib > div, p, section {
+.ib > div, p, section {
   display: inline-block;
   vertical-align: middle;
 }

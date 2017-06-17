@@ -21,7 +21,7 @@ function detail(store = {
       error: action.error
     };
   } else if (action.type === type.SUCCESS) {
-    // convert all opposite image src
+    // convert all image src
     const contentElem = document.createElement('div');
     contentElem.innerHTML = decodeURIComponent(action.data.content);
     contentElem.querySelectorAll('img').forEach(el => {
@@ -34,7 +34,10 @@ function detail(store = {
       is_fetching: false,
       data: {
         ...store.data,
-        [action.params.id]: contentElem.innerHTML
+        [action.params.id]: {
+          ...action.data,
+          content: contentElem.innerHTML
+        }
       }
     };
   }

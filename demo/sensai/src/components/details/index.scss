@@ -1,0 +1,32 @@
+.article-container {
+  padding: 0.2rem;
+  line-height: 0.2rem;
+  
+  .title {
+    font-size: 0.3rem; 
+    line-height: 0.3rem;
+  }
+  .author-info {
+    padding: .15rem 0 .25rem 0;
+    span {
+      color: #cccccc;
+    }
+  }
+
+  .content {
+    p {
+      width: 100%;
+      padding: .1rem 0;
+      span {
+        display: inline-block;
+        width: 100%;
+      }
+      img {
+        overflow-x: scroll;
+      }
+    }
+    pre {
+      overflow-x: scroll;
+    }
+  }
+}

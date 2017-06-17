@@ -50,6 +50,7 @@ pow.Component('Articles', {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_LIST, {
         offset: 0
       }));
+      return;
     }
     this.state = { ...this.state, ...state };
     this.__onScroll = this.__onScroll.bind(this);
