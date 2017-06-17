@@ -17,11 +17,10 @@
     p {
       width: 100%;
       padding: .1rem 0;
+      overflow-x: scroll;
       span {
         display: inline-block;
         width: 100%;
-      }
-      img {
         overflow-x: scroll;
       }
     }

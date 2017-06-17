@@ -556,11 +556,11 @@ article, section, p {
       color: #cccccc; }
   .article-container .content p {
     width: 100%;
-    padding: .1rem 0; }
+    padding: .1rem 0;
+    overflow-x: scroll; }
     .article-container .content p span {
       display: inline-block;
-      width: 100%; }
-    .article-container .content p img {
+      width: 100%;
       overflow-x: scroll; }
   .article-container .content pre {
     overflow-x: scroll; }
