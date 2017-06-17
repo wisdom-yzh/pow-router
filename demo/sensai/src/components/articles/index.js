@@ -44,6 +44,8 @@ pow.Component('Articles', {
   },
 
   onCreate() {
+    // bind scroll
+    this.__onScroll = this.__onScroll.bind(this);
     // fetch data
     const state = window.store.getState();
     if (state.list && state.list.data && !state.list.data.length) {
@@ -53,7 +55,6 @@ pow.Component('Articles', {
       return;
     }
     this.state = { ...this.state, ...state };
-    this.__onScroll = this.__onScroll.bind(this);
   },
 
   onStart() {
