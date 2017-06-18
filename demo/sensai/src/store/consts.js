@@ -1,4 +1,4 @@
-export const API_PREFIX = 'http://sensai.powerpigger.cc'
+export const API_PREFIX = 'http://sensai.powerpigger.cc';
 
 const apiName = {
   SENSAI_LIST: '/sensai/site/list',

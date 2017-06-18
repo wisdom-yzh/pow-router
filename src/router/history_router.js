@@ -40,7 +40,7 @@ HistoryRouter.prototype.start = function() {
   var self = this;
   window.onpopstate = function(event) {
     self.onChange(event);
-  }
+  };
   Router.prototype.start.call(this);
 };
 

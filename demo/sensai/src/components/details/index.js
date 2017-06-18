@@ -1,9 +1,9 @@
 import pow from 'pow-router';
 import Loading from '../loading';
 import { actionFetchApi } from '../../store/actions';
-import { API_PREFIX, REQUEST_TYPE, ACTION_TYPE } from '../../store/consts';
+import { ACTION_TYPE } from '../../store/consts';
 
-import './index.scss'
+import './index.scss';
 
 pow.Component('Details', {
 
@@ -42,6 +42,6 @@ pow.Component('Details', {
       }));
       return;
     }
-    this.state = { ...this.state, ...state }
+    this.state = { ...this.state, ...state };
   }
 });

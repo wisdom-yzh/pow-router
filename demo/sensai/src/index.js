@@ -1,5 +1,5 @@
 import pow from 'pow-router';
-import store from './store'
+import store from './store';
 
 // set router
 pow.config({
@@ -19,21 +19,17 @@ window.store = store;
 // set font-size
 const resizeFontSize = () => {
   const rate = 100 * document.body.clientWidth / 375;
-  document.documentElement.style.fontSize = rate + "px";
-}
+  document.documentElement.style.fontSize = rate + 'px';
+};
 document.onreadystatechange = () => {
   if(document.readyState == 'complete') {
     resizeFontSize();
     window.onresize = resizeFontSize;
   }
-}
-
-window.onresize = function() {
-  
 };
 
-import 'normalize.css'
-import './style.css'
+import 'normalize.css';
+import './style.css';
 
 import './components/articles';
 import './components/details';

@@ -1,7 +1,7 @@
 import pow from 'pow-router';
 import Loading from '../loading';
 import { actionFetchApi } from '../../store/actions';
-import { API_PREFIX, REQUEST_TYPE, ACTION_TYPE } from '../../store/consts';
+import { API_PREFIX, ACTION_TYPE } from '../../store/consts';
 
 import './index.scss';
 
@@ -86,8 +86,8 @@ pow.Component('Articles', {
 
   __onClickList(e) {
     let target = e.target;
-    while (true) {
-      let articleId = target.getAttribute('data-id')
+    while (true) { // eslint-disable-line
+      let articleId = target.getAttribute('data-id');
       if (articleId) {
         pow.router.redirect(`/article/${articleId}`);
         break;

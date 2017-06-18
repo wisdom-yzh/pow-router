@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { API_PREFIX, REQUEST_TYPE, ACTION_TYPE, requestStatus } from './consts';
+import { API_PREFIX, ACTION_TYPE, requestStatus } from './consts';
 
 /**
  * sensai article details
@@ -26,8 +26,9 @@ function detail(store = {
     contentElem.innerHTML = decodeURIComponent(action.data.content);
     contentElem.querySelectorAll('img').forEach(el => {
       const imgSrc = el.getAttribute('src');
-      if (imgSrc.indexOf('http') === -1)
-      el.setAttribute('src', API_PREFIX + imgSrc);
+      if (imgSrc.indexOf('http') === -1) {
+        el.setAttribute('src', API_PREFIX + imgSrc);
+      }
     });
     return {
       ...store,
