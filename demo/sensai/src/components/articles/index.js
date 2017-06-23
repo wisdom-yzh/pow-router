@@ -81,7 +81,7 @@ pow.Component('Articles', {
         offset: this.state.list.data.length / 10
       }));
     }
-    scrollY = document.body.scrollTop;
+    scrollY = document.body.scrollTop || window.scrollY;
   },
 
   __onClickList(e) {
