@@ -1,8 +1,8 @@
 // config redux store
-window.store = Redux.createStore(Reducer.todo, []);
-store.subscribe(function() {
-  pow.current.setState({ todo: store.getState()});
-});
+window.store = Redux.createStore(Reducer.todo, [])
+store.subscribe(function () {
+  pow.current.setState({ todo: store.getState()})
+})
 
 // config router
 pow.config({
@@ -12,4 +12,4 @@ pow.config({
     '/': 'App',
     '/edit': 'Edit'
   }
-}).start();
+}).start()

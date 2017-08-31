@@ -1,9 +1,9 @@
-import pow from 'pow-router';
-import Loading from '../loading';
-import { actionFetchApi } from '../../store/actions';
-import { ACTION_TYPE } from '../../store/consts';
+import pow from 'pow-router'
+import Loading from '../loading'
+import { actionFetchApi } from '../../store/actions'
+import { ACTION_TYPE } from '../../store/consts'
 
-import './index.scss';
+import './index.scss'
 
 pow.Component('Details', {
 
@@ -23,25 +23,25 @@ pow.Component('Details', {
     </div>
   `,
 
-  onRender(data, next) {
-    const details = data.detail.data[data.id];
+  onRender (data, next) {
+    const details = data.detail.data[data.id]
     next({
       is_fetching: data.detail.is_fetching || false,
       article_id: data.id,
       ...details
-    });
+    })
   },
 
-  onCreate() {
-    const state = window.store.getState();
-    const article_id = this.props.id;
+  onCreate () {
+    const state = window.store.getState()
+    const article_id = this.props.id
     if (!state.detail || !Object.keys(state.detail.data).length ||
        !state.detail.data[article_id]) {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_DETAIL, {
         id: article_id
-      }));
-      return;
+      }))
+      return
     }
-    this.state = { ...this.state, ...state };
+    this.state = { ...this.state, ...state }
   }
-});
+})

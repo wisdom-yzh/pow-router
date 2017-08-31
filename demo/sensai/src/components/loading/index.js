@@ -1,4 +1,4 @@
-import './index.scss';
+import './index.scss'
 
 export default `
   <div class="loading">
@@ -10,4 +10,4 @@ export default `
       </div>
     </div>
   </div>
-`;
+`

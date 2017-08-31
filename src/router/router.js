@@ -1,21 +1,21 @@
-var pathToRegexp = require('path-to-regexp');
-var utils = require('../utils');
+var pathToRegexp = require('path-to-regexp')
+var utils = require('../utils')
 
 /**
  * Base Router Class
- * @constructor 
+ * @constructor
  * @param {String} routerBaseUrl
  * @param {Object} routers router dictionary
  */
-function Router(routerBaseUrl, routers) {
+function Router (routerBaseUrl, routers) {
   if (routerBaseUrl.substr(-1) === '/') {
-    routerBaseUrl = routerBaseUrl.substr(0, routerBaseUrl.length - 1);
+    routerBaseUrl = routerBaseUrl.substr(0, routerBaseUrl.length - 1)
   }
-  this.routerBaseUrl = routerBaseUrl;
-  this.routers = {}; 
+  this.routerBaseUrl = routerBaseUrl
+  this.routers = {}
   if (routers && typeof routers === 'object') {
     for (var key in routers) {
-      this.register(key, routers[key]);
+      this.register(key, routers[key])
     }
   }
 }
@@ -24,71 +24,71 @@ function Router(routerBaseUrl, routers) {
  * match router
  * @return {Object} includes Component name and params
  */
-Router.prototype.match = function() {
-  var location = this.getLocation();
-  if (false === location) {
-    return false;
+Router.prototype.match = function () {
+  var location = this.getLocation()
+  if (location === false) {
+    return false
   }
   // match paths
   if (this.routers[location]) {
-    return { component: this.routers[location] };
+    return { component: this.routers[location] }
   }
   // match for regexp symbols
-  var keys = [];
+  var keys = []
   for (var router in this.routers) {
-    if (router.indexOf(':') === -1) continue;
-    var re = pathToRegexp(router, keys);
-    var matched = re.exec(location);
+    if (router.indexOf(':') === -1) continue
+    var re = pathToRegexp(router, keys)
+    var matched = re.exec(location)
     if (matched && matched.length) {
-      var values = matched.slice(1);
-      var params = {};
+      var values = matched.slice(1)
+      var params = {}
       for (var i = 0, len = values.length; i < len; i++) {
-        params[keys[i].name] = values[i];
+        params[keys[i].name] = values[i]
       }
       return {
         component: this.routers[router],
-        params: params 
-      };
+        params: params
+      }
     }
   }
-  return false;
-};
+  return false
+}
 
 /**
  * get router table
  * @return {Array}
  */
-Router.prototype.getRouters = function() {
-  return this.routers;
-};
+Router.prototype.getRouters = function () {
+  return this.routers
+}
 
 /**
  * register router
  * @param {String} path router path
  * @param {String} component component name
  */
-Router.prototype.register = function(path, component) {
+Router.prototype.register = function (path, component) {
   if (this.routers[path]) {
-    throw new Error('the path ' + path + ' has already registered');
+    throw new Error('the path ' + path + ' has already registered')
   }
-  this.routers[path] = component;
-};
+  this.routers[path] = component
+}
 
 /**
  * history go back
  */
-Router.prototype.back = function() {
-  history.go(-1);
-};
+Router.prototype.back = function () {
+  history.go(-1)
+}
 
 /**
  * start the first redirect
  */
-Router.prototype.start = function() {
-  setTimeout(function() {
-    this.onChange();
-  }.bind(this), 0);
-};
+Router.prototype.start = function () {
+  setTimeout(function () {
+    this.onChange()
+  }.bind(this), 0)
+}
 
 /**
  * redirect to path
@@ -97,12 +97,12 @@ Router.prototype.start = function() {
  * @param {Object} qs quertstring object
  * @param {Boolean} needHistory add history or not
  */
-Router.prototype.redirect = function(path, qs, needHistory) {};
+Router.prototype.redirect = function (path, qs, needHistory) {}
 
 /**
  * get current url location
  * @virtual
  */
-Router.prototype.getLocation = function() {};
+Router.prototype.getLocation = function () {}
 
-module.exports = Router;
+module.exports = Router

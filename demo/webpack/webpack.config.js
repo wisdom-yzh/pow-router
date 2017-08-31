@@ -1,10 +1,10 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: './index.js',
   output: {
-    filename: './bundle.js',
+    filename: './bundle.js'
   },
   devtool: 'source-map',
   module: {

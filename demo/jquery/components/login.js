@@ -10,27 +10,27 @@ pow.Component('Login', {
       <button>login</button>\
     </div>',
 
-  onCreate: function() {
-    window.store && pow.router.redirect('/');
+  onCreate: function () {
+    window.store && pow.router.redirect('/')
   },
 
-  onStart: function(rootScope) {
-    var $root = $(rootScope);
-    $root.find('button').on('click', function() {
-      var username = $root.find('.username').val();
-      var password = $root.find('.password').val();
-      $root.find('.error').hide();
+  onStart: function (rootScope) {
+    var $root = $(rootScope)
+    $root.find('button').on('click', function () {
+      var username = $root.find('.username').val()
+      var password = $root.find('.password').val()
+      $root.find('.error').hide()
       if (username !== '' && password !== '') {
         window.store = {
           username: username,
           password: password
-        };
-        pow.router.redirect('/');
+        }
+        pow.router.redirect('/')
       } else if (username == '') {
-        $root.find('.err_user').show();
+        $root.find('.err_user').show()
       } else {
-        $root.find('.err_pwd').show();
+        $root.find('.err_pwd').show()
       }
-    }); 
+    })
   }
-});
+})

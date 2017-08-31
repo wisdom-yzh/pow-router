@@ -1,13 +1,12 @@
 (function (scope) {
-  
   var TYPES = {
     ADD_TODO: 'ADD_TODO',
     EDIT_TODO: 'EDIT_TODO',
     TRIGGER_TODO: 'TRIGGER_TODO',
     REMOVE_TODO: 'REMOVE_TODO'
-  };
+  }
 
-  function addTodo(title, content) {
+  function addTodo (title, content) {
     return {
       type: TYPES.ADD_TODO,
       title: title,
@@ -15,7 +14,7 @@
     }
   }
 
-  function editTodo(id, params) {
+  function editTodo (id, params) {
     return {
       type: TYPES.EDIT_TODO,
       id: id,
@@ -24,14 +23,14 @@
     }
   }
 
-  function triggerTodo(id) {
+  function triggerTodo (id) {
     return {
       type: TYPES.TRIGGER_TODO,
       id: id
     }
   }
 
-  function removeTodo(id) {
+  function removeTodo (id) {
     return {
       type: TYPES.REMOVE_TODO,
       id: id
@@ -44,6 +43,5 @@
     triggerTodo: triggerTodo,
     removeTodo: removeTodo,
     editTodo: editTodo
-  };
-
-})(window);
+  }
+})(window)

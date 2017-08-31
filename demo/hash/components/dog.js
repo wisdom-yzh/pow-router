@@ -1,3 +1,3 @@
-pow.Component('Dog', {
+window.pow.Component('Dog', {
   template: 'this is the dog page~'
-});
+})

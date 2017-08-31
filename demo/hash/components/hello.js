@@ -8,18 +8,18 @@ pow.Component('Hello', {
     </ul>\
   ',
 
-  onCreate: function() {
-    this.event = function(e) {
-      var id = e.target.getAttribute('id');
-      pow.router.redirect('/' + id);
+  onCreate: function () {
+    this.event = function (e) {
+      var id = e.target.getAttribute('id')
+      pow.router.redirect('/' + id)
     }
   },
 
-  onStart: function(rootScope) {
-    rootScope.querySelector('ul').addEventListener('click', this.event);
+  onStart: function (rootScope) {
+    rootScope.querySelector('ul').addEventListener('click', this.event)
   },
 
-  onStop: function(rootScope) {
-    rootScope.querySelector('ul').removeEventListener('click', this.event);
+  onStop: function (rootScope) {
+    rootScope.querySelector('ul').removeEventListener('click', this.event)
   }
-});
+})

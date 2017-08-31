@@ -1,13 +1,13 @@
-const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const autoprefixer = require('autoprefixer');
+const path = require('path')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
   module: {
@@ -29,10 +29,10 @@ module.exports = {
         test: /\.(scss|css)$/,
         use: ExtractTextPlugin.extract({
           use: [
-            'css-loader', 
-            'sass-loader', 
-            { 
-              loader: 'postcss-loader', 
+            'css-loader',
+            'sass-loader',
+            {
+              loader: 'postcss-loader',
               options: { plugins: () => [autoprefixer] }
             }
           ]

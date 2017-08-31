@@ -24,53 +24,53 @@ pow.Component('App', {
     </article>\
     <button class="btn todo-add">add a new item</button>\
   ',
-  
+
   onRender: function (data, next) {
-    if (!data || !data.todo) data = { todo: store.getState() };
+    if (!data || !data.todo) data = { todo: store.getState() }
     var empty = data.todo.filter(function (item) {
-      return item.status !== 2;
-    }).length === 0;
-    next(pow.utils.assign({ empty: empty }, data));
+      return item.status !== 2
+    }).length === 0
+    next(pow.utils.assign({ empty: empty }, data))
   },
 
-  onCreate: function() {
+  onCreate: function () {
     // add first task
     if (!store.getState().length) {
       store.dispatch(Action.addTodo(
         'This is a simple todo webapp',
         'I use pow-router and redux to do that~'
-      ));
+      ))
     }
     // set event handler
-    this.eventHandler = function(e) {
-      var target = e.target;
-      var className = target.className;
+    this.eventHandler = function (e) {
+      var target = e.target
+      var className = target.className
       if (className === 'btn todo-add') {
-        pow.router.redirect('/edit');
+        pow.router.redirect('/edit')
       } else {
-        var todo_id = parseInt(target.parentNode.getAttribute('data-id'));
+        var todo_id = parseInt(target.parentNode.getAttribute('data-id'))
         if (className.indexOf('todo-edit') !== -1) {
           return pow.router.redirect('/edit', {
             id: todo_id,
             title: store.getState()[todo_id].title,
             content: store.getState()[todo_id].content
-          });
+          })
         }
         if (className.indexOf('todo-delete') !== -1) {
-          return store.dispatch(Action.removeTodo(todo_id));
+          return store.dispatch(Action.removeTodo(todo_id))
         }
         if (className.indexOf('todo-status') !== -1) {
-          return store.dispatch(Action.triggerTodo(todo_id));
+          return store.dispatch(Action.triggerTodo(todo_id))
         }
       }
-    };
+    }
   },
 
-  onStart: function(rootElement) {
-    rootElement.addEventListener('click', this.eventHandler);
+  onStart: function (rootElement) {
+    rootElement.addEventListener('click', this.eventHandler)
   },
 
-  onStop: function(rootElement) {
-    rootElement.removeEventListener('click', this.eventHandler);
+  onStop: function (rootElement) {
+    rootElement.removeEventListener('click', this.eventHandler)
   }
-});
+})

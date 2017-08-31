@@ -1,11 +1,11 @@
-import pow from 'pow-router';
-import Loading from '../loading';
-import { actionFetchApi } from '../../store/actions';
-import { API_PREFIX, ACTION_TYPE } from '../../store/consts';
+import pow from 'pow-router'
+import Loading from '../loading'
+import { actionFetchApi } from '../../store/actions'
+import { API_PREFIX, ACTION_TYPE } from '../../store/consts'
 
-import './index.scss';
+import './index.scss'
 
-let scrollY = 0;
+let scrollY = 0
 
 pow.Component('Articles', {
 
@@ -32,68 +32,68 @@ pow.Component('Articles', {
     </div>
   `,
 
-  onRender(data, next) {
+  onRender (data, next) {
     next({
       is_fetching: data.list.is_fetching || false,
       list: data.list.data.map(row => ({
-        ...row, 
+        ...row,
         id: row.linkurl.split('/').slice(-1)[0]
       }))
-    });
-    window.scrollTo(0, scrollY);
+    })
+    window.scrollTo(0, scrollY)
   },
 
-  onCreate() {
+  onCreate () {
     // bind scroll
-    this.__onScroll = this.__onScroll.bind(this);
+    this.__onScroll = this.__onScroll.bind(this)
     // fetch data
-    const state = window.store.getState();
+    const state = window.store.getState()
     if (state.list && state.list.data && !state.list.data.length) {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_LIST, {
         offset: 0
-      }));
-      return;
+      }))
+      return
     }
-    this.state = { ...this.state, ...state };
+    this.state = { ...this.state, ...state }
   },
 
-  onStart() {
-    window.addEventListener('scroll', this.__onScroll);
+  onStart () {
+    window.addEventListener('scroll', this.__onScroll)
     document.querySelector('.container') &&
     document.querySelector('.container').addEventListener(
       'click', this.__onClickList, true
-    );
+    )
   },
 
-  onStop() {
-    window.removeEventListener('scroll', this.__onScroll);
-    document.querySelector('.container') && 
+  onStop () {
+    window.removeEventListener('scroll', this.__onScroll)
+    document.querySelector('.container') &&
     document.querySelector('.container').removeEventListener(
       'click', this.__onClickList, true
-    );
+    )
   },
 
-  __onScroll() {
-    if (window.innerHeight + document.body.scrollTop >= 
+  __onScroll () {
+    if (window.innerHeight + document.body.scrollTop >=
         document.body.scrollHeight - 30 &&
         !this.state.list.is_fetching) {
       window.store.dispatch(actionFetchApi(ACTION_TYPE.SENSAI_LIST, {
         offset: this.state.list.data.length / 10
-      }));
+      }))
     }
-    scrollY = document.body.scrollTop || window.scrollY;
+    scrollY = document.body.scrollTop || window.scrollY
   },
 
-  __onClickList(e) {
-    let target = e.target;
+  __onClickList (e) {
+    let target = e.target
     while (true) { // eslint-disable-line
-      let articleId = target.getAttribute('data-id');
+      let articleId = target.getAttribute('data-id')
       if (articleId) {
-        pow.router.redirect(`/article/${articleId}`);
-        break;
+        pow.router.redirect(`/article/${articleId}`)
+        break
       }
-      target = target.parentNode;
+      target = target.parentNode
     }
   }
 
-});
+})

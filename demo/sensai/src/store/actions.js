@@ -1,19 +1,19 @@
-import 'es6-promise/auto';
-import 'isomorphic-fetch';
+import 'es6-promise/auto'
+import 'isomorphic-fetch'
 import {
-  getApiName, 
-  requestStatus 
-} from './consts';
+  getApiName,
+  requestStatus
+} from './consts'
 
 export const actionFetchApi = (actionType, params) => dispatch => {
-  const type = requestStatus(actionType);
-  dispatch({ type: type.START, params });
+  const type = requestStatus(actionType)
+  dispatch({ type: type.START, params })
   fetch(getApiName(actionType, params))
     .then(res => res.json())
     .then(data => {
-      dispatch({ type: type.SUCCESS, params, data });
+      dispatch({ type: type.SUCCESS, params, data })
     })
     .catch(error => {
-      dispatch({ type: type.ERROR, error });
-    });
-};
+      dispatch({ type: type.ERROR, error })
+    })
+}

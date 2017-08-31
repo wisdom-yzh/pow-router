@@ -1,53 +1,53 @@
-var utils = require('../utils');
-var Router = require('./router');
+var utils = require('../utils')
+var Router = require('./router')
 
-function HashRouter(routerBaseUrl, routers) {
-  Router.call(this, routerBaseUrl, routers);
+function HashRouter (routerBaseUrl, routers) {
+  Router.call(this, routerBaseUrl, routers)
 }
 
-utils.inherit(Router, HashRouter);
+utils.inherit(Router, HashRouter)
 
 /**
  * get location by hash
  */
-HashRouter.prototype.getLocation = function() {
-  var baseUrl = this.routerBaseUrl;
-  var path = window.location.hash;
+HashRouter.prototype.getLocation = function () {
+  var baseUrl = this.routerBaseUrl
+  var path = window.location.hash
   if (path === '') {
-    window.location.replace('#/');
+    window.location.replace('#/')
   }
-  path = path.substr(1); // remove '#'
-  var baseUrlIndex = path.indexOf(baseUrl);
+  path = path.substr(1) // remove '#'
+  var baseUrlIndex = path.indexOf(baseUrl)
   if (baseUrlIndex !== 0 && baseUrlIndex !== 1) {
-    return false;
+    return false
   }
-  return path.substr(baseUrlIndex + baseUrl.length);
-};
+  return path.substr(baseUrlIndex + baseUrl.length)
+}
 
 /**
  * @override Router::redirect
  */
-HashRouter.prototype.redirect = function(path, qs, needHistory) {
-  path = this.routerBaseUrl + path;
+HashRouter.prototype.redirect = function (path, qs, needHistory) {
+  path = this.routerBaseUrl + path
   if (qs) {
-    path = path + utils.encodeQueryString(qs);
+    path = path + utils.encodeQueryString(qs)
   }
   if (needHistory === undefined || needHistory) {
-    window.location.hash = path;
+    window.location.hash = path
   } else {
     var finalPath = window.location.pathname +
-                    window.location.search + '#' + path;
-    window.location.replace(finalPath);
+                    window.location.search + '#' + path
+    window.location.replace(finalPath)
   }
   // automatic trigger onHashChange...
-};
+}
 
-HashRouter.prototype.start = function() {
-  var self = this;
-  window.onhashchange = function() {
-    self.onChange();
-  };
-  Router.prototype.start.call(this);
-};
+HashRouter.prototype.start = function () {
+  var self = this
+  window.onhashchange = function () {
+    self.onChange()
+  }
+  Router.prototype.start.call(this)
+}
 
-module.exports = HashRouter;
+module.exports = HashRouter
